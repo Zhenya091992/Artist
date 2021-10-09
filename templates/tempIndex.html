@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <meta charset=utf-8">
+        <title>Artist</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <header>
+                <div class="inner-header">
+                    <div class="conteiner">
+                        <div class="article">
+                            <h1 align="center">AIGEL</h1>
+                        </div>
+                        <div class="button">
+                            <form action="signIn.php" method="get">
+                              <button class="button-enter" type="submit">Sign in</button>
+                           </form>
+                        </div>   
+                    </div>
+                </div>
+            </header>
+            <div class="container">
+                <main>
+                    <div class="inner-content">
+                        <?php echo $this->data['info']->text; ?>
+                    </div>
+                </main>
+                <aside>
+                    <div class="inner-sidebar">
+                        <br>
+                        <a href="albums.php"><h3 align="center">Albums</h3></a>
+                        <a href="photo.php"><h3 align="center">Photo</h3></a>
+                    </div>
+                </aside>
+            </div>    
+            <footer>
+                <div class="inner-footer"></div>
+            </footer>
+        </div>
+    </body>
+</html>
