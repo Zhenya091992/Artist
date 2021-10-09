@@ -28,6 +28,7 @@ class DB
         }
     }
 
+    //генерирует запись за записью из ответа базы данных
     public function queryEach(string $sql)
     {
         $sth = $this->connectDB->prepare($sql);
@@ -42,3 +43,4 @@ class DB
         }
     }
 }
+

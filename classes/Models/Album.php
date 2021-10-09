@@ -22,7 +22,7 @@ class Album extends \Models\ConnectDB
     {
         $sql = 'SELECT * FROM `aigel` WHERE `nameAlbum` = :nameAlbum';
         $data = [':nameAlbum' => $nameAlbum];
-        if(static::$connectDB->query($sql, $data)) {
+        if(static::$connectDB->queryEach($sql, $data)) {
             return false;
         } else {
             $sqlSetAlbum = ("INSERT INTO `aigel` (`id`, `nameAlbum`, `dateRelise`) 

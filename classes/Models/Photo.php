@@ -20,7 +20,7 @@ class Photo extends ConnectDB
     {
         $sql = 'SELECT * FROM `photo` WHERE `namePhoto` = :namePhoto';
         $data = [':namePhoto' => $namePhoto];
-        if (static::$connectDB->query($sql, $data)) {
+        if (static::$connectDB->queryEach($sql, $data)) {
             return false;
         } else {
             $nameFile = mt_rand(0, 10000) . $img['file']['name'];
