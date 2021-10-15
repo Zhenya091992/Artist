@@ -4,6 +4,9 @@ namespace Models;
 
 class Photo extends ConnectDB
 {
+    // имя таблицы БД
+    const TABLE = 'photo';
+
     public function __construct()
     {
         parent::__construct();
@@ -12,20 +15,20 @@ class Photo extends ConnectDB
     //получаем массив обЪектов таблицы фотографий
     public function getPhoto()
     {
-        return static::getAll('photo');
+        return static::getAll(self::TABLE);
     }
 
     //добавляем в базу данных фотографию, с проверкой на существующее название фотографии
     public function addPhoto(string $namePhoto, array $img)
     {
-        $sql = 'SELECT * FROM `photo` WHERE `namePhoto` = :namePhoto';
+        $sql = "SELECT * FROM `" . self::TABLE . "` WHERE `namePhoto` = :namePhoto";
         $data = [':namePhoto' => $namePhoto];
-        if (static::$connectDB->queryEach($sql, $data)) {
+        if (static::$connectDB->query($sql, $data)) {
             return false;
         } else {
             $nameFile = mt_rand(0, 10000) . $img['file']['name'];
             $pathImg = __DIR__ . '/../../data/photo/' . $nameFile;
-            $sqlAddPhoto = ("INSERT INTO `photo` (`namePhoto`, `nameFile`) VALUES (:namePhoto,:nameFile)");
+            $sqlAddPhoto = ("INSERT INTO `" . self::TABLE . "` (`namePhoto`, `nameFile`) VALUES (:namePhoto,:nameFile)");
             $data = [
                 ':namePhoto' => $namePhoto,
                 ':nameFile' => $nameFile

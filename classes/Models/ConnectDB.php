@@ -4,7 +4,7 @@
 namespace Models;
 
 
-class ConnectDB
+abstract class ConnectDB
 {
     public static $connectDB;
 
@@ -16,6 +16,6 @@ class ConnectDB
     public static function getAll($nameTable)
     {
         $sqlGet = ("SELECT * FROM $nameTable");
-        return self::$connectDB->query($sqlGet);
+        return self::$connectDB->queryEach($sqlGet);
     }
 }

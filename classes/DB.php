@@ -19,10 +19,8 @@ class DB
     public function query(string $sql, array $data = null)
     {
         $sth = $this->connectDB->prepare($sql);
-
         if ($sth->execute($data)) {
             return $sth->fetchAll(PDO::FETCH_OBJ);
-
         } else {
             return false;
         }
@@ -35,9 +33,8 @@ class DB
         if ($sth->execute()) {
             $sth->setFetchMode(PDO::FETCH_OBJ);
             while ($string = $sth->fetch()) {
-                $data[] = $string;
+                yield $string;
             }
-            return $data;
         } else {
             return false;
         }
