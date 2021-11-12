@@ -1,10 +1,8 @@
 <?php
 
-
 namespace Models;
 
-
-class Data extends \Models\ConnectDB
+class Data extends \Models\Model
 {
     public function __construct()
     {
@@ -15,6 +13,6 @@ class Data extends \Models\ConnectDB
     {
         $data = [':nameData' => $nameData];
         $sqlGetData = ("SELECT * FROM `data` WHERE `name` = :nameData");
-        return static::$connectDB->query($sqlGetData, $data);
+        return static::$connectDB->query($sqlGetData, $data, static::class);
     }
 }

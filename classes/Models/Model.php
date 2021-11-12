@@ -65,6 +65,6 @@ abstract class Model
     {
         $data = [':id' => $id];
         $sqlDelete = ("DELETE FROM " . static::TABLE . " WHERE `id`=:id");
-        return static::$connectDB->query($sqlDelete, $data, static::class);
+        return static::$connectDB->execute($sqlDelete, $data);
     }
 }

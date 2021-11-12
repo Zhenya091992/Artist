@@ -1,10 +1,8 @@
 <?php
 
-
 namespace Models;
 
-
-class Admin extends ConnectDB
+class Admin extends Model
 {
     const TABLE = 'admin';
 
@@ -18,7 +16,7 @@ class Admin extends ConnectDB
     {
         $data = [':login' => $login];
         $sql = 'SELECT * FROM `' . static::TABLE . '` WHERE `login` = :login';
-        $reg = static::$connectDB->query($sql, $data);
+        $reg = static::$connectDB->query($sql, $data, static::class);
         if (isset($reg)) {
             return password_verify($password, $reg[0]->password);
         } else {
@@ -32,7 +30,7 @@ class Admin extends ConnectDB
         if (!empty($session['login'])) {
             $data = [':login' => $session['login'],];
             $sql = 'SELECT * FROM `' . static::TABLE . '` WHERE `login` = :login';
-            return static::$connectDB->query($sql, $data);
+            return static::$connectDB->query($sql, $data, self::class);
         } else {
             return false;
         }

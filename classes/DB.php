@@ -16,12 +16,13 @@ class DB
         return $sth->execute($data);
     }
 
-    public function query(string $sql, array $data = null)
+    public function query(string $sql, array $data = null, string $class)
     {
         $sth = $this->connectDB->prepare($sql);
         if ($sth->execute($data)) {
-            return $sth->fetchAll(PDO::FETCH_OBJ);
+            return $sth->fetchAll(PDO::FETCH_CLASS, $class);
         } else {
+            var_dump($sth->errorInfo());
             return false;
         }
     }
@@ -40,4 +41,3 @@ class DB
         }
     }
 }
-
